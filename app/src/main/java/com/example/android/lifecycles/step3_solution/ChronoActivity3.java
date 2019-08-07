@@ -42,6 +42,7 @@ public class ChronoActivity3 extends AppCompatActivity {
     }
 
     private void subscribe() {
+        //观察者，在这里刷新UI
         final Observer<Long> elapsedTimeObserver = new Observer<Long>() {
             @Override
             public void onChanged(@Nullable final Long aLong) {
@@ -52,6 +53,8 @@ public class ChronoActivity3 extends AppCompatActivity {
             }
         };
 
+        //订阅，使得被观察者持有观察者，被观察者发生数据更新，就调用观察者的onChanged(数据)方法
+        //this是声明周期，保证仅在生命周期内有效
         mLiveDataTimerViewModel.getElapsedTime().observe(this, elapsedTimeObserver);
     }
 }
